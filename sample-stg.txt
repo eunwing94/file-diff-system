@@ -1,0 +1,26 @@
+사용자 로그인 기능
+================
+
+1. 이메일과 비밀번호로 로그인
+2. 로그인 성공 시 메인 페이지로 이동
+3. 로그인 실패 시 에러 메시지 표시
+4. 자동 로그인 기능 (체크박스)
+5. 비밀번호 찾기 링크 제공
+6. 소셜 로그인 추가 (구글, 페이스북)
+7. 2단계 인증 기능
+8. 보안 강화 (IP 제한, 의심스러운 로그인 감지)
+
+API 엔드포인트:
+- POST /api/login
+- POST /api/logout
+- GET /api/user/profile
+- POST /api/social-login
+- POST /api/2fa/verify
+- POST /api/security/check-ip
+
+데이터베이스 테이블:
+- users (id, email, password, created_at, social_id, 2fa_enabled, last_login_ip)
+- sessions (id, user_id, token, expires_at, ip_address)
+- social_accounts (id, user_id, provider, provider_id)
+- two_factor_auth (id, user_id, secret, backup_codes)
+- security_logs (id, user_id, action, ip_address, created_at)

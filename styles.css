@@ -1,0 +1,884 @@
+/* 기본 스타일 리셋 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    color: #333;
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* 헤더 스타일 */
+header {
+    text-align: center;
+    margin-bottom: 30px;
+    color: white;
+}
+
+header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}
+
+header p {
+    font-size: 1.1rem;
+    opacity: 0.9;
+}
+
+/* 메인 레이아웃 */
+.comparison-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    height: calc(100vh - 200px);
+    min-height: 600px;
+}
+
+/* 소스 패널 기본 스타일 */
+.source-panel {
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+/* PRD 패널 (좌측) */
+.prd-panel {
+    border-left: 5px solid #4CAF50;
+}
+
+.prd-panel .panel-header {
+    background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+    color: white;
+}
+
+/* 개발기 패널 */
+.dev-panel {
+    border-left: 5px solid #2196F3;
+}
+
+.dev-panel .panel-header {
+    background: linear-gradient(135deg, #2196F3 0%, #1976D2 100%);
+    color: white;
+}
+
+/* QA 패널 */
+.qa-panel {
+    border-left: 5px solid #FF9800;
+}
+
+.qa-panel .panel-header {
+    background: linear-gradient(135deg, #FF9800 0%, #F57C00 100%);
+    color: white;
+}
+
+/* STG 패널 */
+.stg-panel {
+    border-left: 5px solid #9C27B0;
+}
+
+.stg-panel .panel-header {
+    background: linear-gradient(135deg, #9C27B0 0%, #7B1FA2 100%);
+    color: white;
+}
+
+/* 패널 헤더 */
+.panel-header {
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.panel-header h2 {
+    font-size: 1.2rem;
+    margin: 0;
+}
+
+.panel-title {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.panel-stats {
+    background: rgba(255,255,255,0.2);
+    padding: 5px 12px;
+    border-radius: 15px;
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+.panel-status {
+    padding: 3px 8px;
+    border-radius: 12px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    min-width: 50px;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.panel-status.identical {
+    background: rgba(76, 175, 80, 0.9);
+    color: white;
+}
+
+.panel-status.different {
+    background: rgba(255, 87, 34, 0.9);
+    color: white;
+}
+
+.panel-status.empty {
+    background: rgba(158, 158, 158, 0.9);
+    color: white;
+}
+
+/* 코드 에디터 */
+.code-editor {
+    flex: 1;
+    position: relative;
+}
+
+.code-editor textarea {
+    width: 100%;
+    height: 100%;
+    border: none;
+    outline: none;
+    padding: 20px;
+    font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+    font-size: 14px;
+    line-height: 1.5;
+    resize: none;
+    background: #fafafa;
+    color: #333;
+    transition: all 0.3s ease;
+}
+
+.code-editor textarea:focus {
+    background: white;
+    box-shadow: inset 0 0 0 2px rgba(102, 126, 234, 0.3);
+}
+
+.code-editor textarea:hover {
+    background: #f5f5f5;
+}
+
+.code-editor textarea:focus:hover {
+    background: white;
+}
+
+.code-editor textarea::placeholder {
+    color: #999;
+    font-style: italic;
+}
+
+/* 포커스 상태 표시 */
+.source-panel.focused {
+    transform: scale(1.02);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+    z-index: 10;
+}
+
+.source-panel.focused .panel-header {
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.source-panel.focused .code-editor textarea {
+    background: white;
+    box-shadow: inset 0 0 0 3px rgba(102, 126, 234, 0.4);
+}
+
+/* 우측 비교 패널들 */
+.comparison-panels {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.comparison-panels .source-panel {
+    flex: 1;
+    min-height: 0;
+}
+
+/* Diff 인디케이터 - 숨김 처리 */
+.diff-indicator {
+    display: none !important;
+}
+
+/* 실시간 diff 결과 */
+.diff-results {
+    margin-top: 20px;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    overflow: hidden;
+}
+
+.diff-header {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+}
+
+.diff-header h3 {
+    font-size: 1.3rem;
+    margin: 0;
+    flex-shrink: 0;
+}
+
+.diff-summary {
+    display: flex;
+    gap: 15px;
+    flex: 1;
+    justify-content: center;
+}
+
+.diff-summary-item {
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    transition: all 0.3s ease;
+}
+
+.diff-summary-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.diff-summary-item.dev:hover {
+    background: rgba(33, 150, 243, 1);
+    box-shadow: 0 4px 12px rgba(33, 150, 243, 0.4);
+}
+
+.diff-summary-item.qa:hover {
+    background: rgba(255, 152, 0, 1);
+    box-shadow: 0 4px 12px rgba(255, 152, 0, 0.4);
+}
+
+.diff-summary-item.stg:hover {
+    background: rgba(156, 39, 176, 1);
+    box-shadow: 0 4px 12px rgba(156, 39, 176, 0.4);
+}
+
+.diff-summary-item.identical:hover {
+    background: rgba(76, 175, 80, 1);
+    box-shadow: 0 4px 12px rgba(76, 175, 80, 0.4);
+}
+
+.diff-summary-item.dev {
+    background: rgba(33, 150, 243, 0.9);
+    color: white;
+    border: 2px solid #2196F3;
+}
+
+.diff-summary-item.qa {
+    background: rgba(255, 152, 0, 0.9);
+    color: white;
+    border: 2px solid #FF9800;
+}
+
+.diff-summary-item.stg {
+    background: rgba(156, 39, 176, 0.9);
+    color: white;
+    border: 2px solid #9C27B0;
+}
+
+.diff-summary-item.identical {
+    background: rgba(76, 175, 80, 0.9);
+    color: white;
+    border: 2px solid #4CAF50;
+}
+
+.diff-summary-stats {
+    display: flex;
+    gap: 3px;
+    margin-left: 5px;
+}
+
+.diff-summary-stat {
+    padding: 2px 6px;
+    border-radius: 10px;
+    font-size: 0.75rem;
+    background: rgba(255, 255, 255, 0.3);
+    font-weight: 600;
+}
+
+/* 각 소스별 통계 배지 색깔 */
+.diff-summary-item.dev .diff-summary-stat {
+    background: rgba(255, 255, 255, 0.3);
+    color: white;
+}
+
+.diff-summary-item.qa .diff-summary-stat {
+    background: rgba(255, 255, 255, 0.3);
+    color: white;
+}
+
+.diff-summary-item.stg .diff-summary-stat {
+    background: rgba(255, 255, 255, 0.3);
+    color: white;
+}
+
+.diff-summary-item.identical .diff-summary-stat {
+    background: rgba(255, 255, 255, 0.3);
+    color: white;
+}
+
+.toggle-btn {
+    background: rgba(255,255,255,0.2);
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+}
+
+.toggle-btn:hover {
+    background: rgba(255,255,255,0.3);
+}
+
+.diff-comparison-layout {
+    display: flex;
+    height: 500px;
+    border-top: 1px solid #e0e0e0;
+}
+
+.diff-panel {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    border-right: 1px solid #e0e0e0;
+}
+
+.diff-panel:last-child {
+    border-right: none;
+}
+
+.diff-panel-header {
+    background: #f8f9fa;
+    padding: 15px 20px;
+    border-bottom: 1px solid #e0e0e0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.diff-panel-header h4 {
+    margin: 0;
+    font-size: 1.1rem;
+    color: #495057;
+}
+
+.diff-panel-stats {
+    background: #e9ecef;
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #6c757d;
+}
+
+.diff-panel-content {
+    flex: 1;
+    overflow-y: auto;
+    font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+    font-size: 13px;
+    line-height: 1.5;
+    background: #fafafa;
+}
+
+.diff-line-comparison {
+    display: flex;
+    padding: 2px 0;
+    border-left: 3px solid transparent;
+    transition: all 0.2s ease;
+}
+
+.diff-line-comparison:hover {
+    background: #f0f0f0;
+}
+
+.diff-line-comparison.added {
+    background: #e8f5e8;
+    border-left-color: #4caf50;
+}
+
+.diff-line-comparison.removed {
+    background: #ffeaea;
+    border-left-color: #f44336;
+}
+
+.diff-line-comparison.modified {
+    background: #fff3e0;
+    border-left-color: #ff9800;
+}
+
+.diff-line-comparison.unchanged {
+    background: #fafafa;
+}
+
+.diff-line-number {
+    width: 50px;
+    padding: 2px 8px;
+    text-align: right;
+    color: #666;
+    background: #f0f0f0;
+    border-right: 1px solid #ddd;
+    font-size: 11px;
+    user-select: none;
+    flex-shrink: 0;
+}
+
+.diff-line-number.added {
+    background: #d4edda;
+    color: #155724;
+}
+
+.diff-line-number.removed {
+    background: #f8d7da;
+    color: #721c24;
+}
+
+.diff-line-number.modified {
+    background: #ffeaa7;
+    color: #d63031;
+}
+
+.diff-line-content {
+    flex: 1;
+    padding: 2px 15px;
+    white-space: pre-wrap;
+    word-break: break-word;
+}
+
+.diff-line-content.added {
+    color: #155724;
+}
+
+.diff-line-content.removed {
+    color: #721c24;
+}
+
+.diff-line-content.modified {
+    color: #d63031;
+}
+
+.diff-line-content.unchanged {
+    color: #333;
+}
+
+/* 기존 diff-content 스타일 제거 */
+.diff-content {
+    display: none;
+}
+
+/* 전체 비교 결과 */
+.overall-comparison-result {
+    margin-top: 20px;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    overflow: hidden;
+    animation: slideIn 0.3s ease-out;
+}
+
+.overall-result-content {
+    padding: 20px;
+    text-align: center;
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.overall-result-content.all-identical {
+    background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+    color: white;
+}
+
+.overall-result-content.has-differences {
+    background: linear-gradient(135deg, #FF9800 0%, #F57C00 100%);
+    color: white;
+}
+
+.overall-result-content .source-list {
+    margin-top: 10px;
+    font-size: 1rem;
+    opacity: 0.9;
+}
+
+.overall-result-content .gap-indicator {
+    background: rgba(255, 255, 255, 0.2);
+    padding: 5px 10px;
+    border-radius: 20px;
+    margin: 5px;
+    display: inline-block;
+    font-size: 0.9rem;
+}
+
+/* Diff 라인 스타일 */
+.diff-line {
+    display: flex;
+    padding: 3px 0;
+    border-left: 3px solid transparent;
+    transition: all 0.2s ease;
+}
+
+.diff-line:hover {
+    background: #f8f9fa;
+}
+
+.diff-line.added {
+    background: #e8f5e8;
+    border-left-color: #4caf50;
+}
+
+.diff-line.removed {
+    background: #ffeaea;
+    border-left-color: #f44336;
+}
+
+.diff-line.unchanged {
+    background: #fafafa;
+}
+
+.diff-line.modified {
+    background: #fff3e0;
+    border-left-color: #ff9800;
+}
+
+.diff-line-number {
+    width: 50px;
+    padding: 3px 8px;
+    text-align: right;
+    color: #666;
+    background: #f0f0f0;
+    border-right: 1px solid #ddd;
+    font-size: 11px;
+    user-select: none;
+    flex-shrink: 0;
+}
+
+.diff-line-number.added {
+    background: #d4edda;
+    color: #155724;
+}
+
+.diff-line-number.removed {
+    background: #f8d7da;
+    color: #721c24;
+}
+
+.diff-line-number.modified {
+    background: #ffeaa7;
+    color: #d63031;
+}
+
+.diff-line-content {
+    flex: 1;
+    padding: 3px 15px;
+    white-space: pre-wrap;
+    word-break: break-word;
+}
+
+.diff-line-content.added {
+    color: #155724;
+}
+
+.diff-line-content.removed {
+    color: #721c24;
+}
+
+.diff-line-content.modified {
+    color: #d63031;
+}
+
+.diff-line-content.unchanged {
+    color: #333;
+}
+
+/* 비교 섹션 헤더 */
+.comparison-section {
+    margin-bottom: 20px;
+}
+
+.comparison-section-header {
+    background: #f8f9fa;
+    padding: 10px 15px;
+    font-weight: 600;
+    color: #495057;
+    border-left: 4px solid #007bff;
+    margin-bottom: 10px;
+}
+
+/* 통계 정보 */
+.diff-stats {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 15px;
+    flex-wrap: wrap;
+}
+
+.stat-item {
+    background: #e9ecef;
+    padding: 8px 12px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+.stat-item.added {
+    background: #d4edda;
+    color: #155724;
+}
+
+.stat-item.removed {
+    background: #f8d7da;
+    color: #721c24;
+}
+
+.stat-item.modified {
+    background: #fff3cd;
+    color: #856404;
+}
+
+/* 반응형 디자인 */
+@media (max-width: 1200px) {
+    .comparison-layout {
+        grid-template-columns: 1fr;
+        height: auto;
+    }
+    
+    .comparison-panels {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 15px;
+    }
+    
+    .stg-panel {
+        grid-column: 1 / -1;
+    }
+    
+    .diff-header {
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+    }
+    
+    .diff-summary {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .diff-summary-item {
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .diff-comparison-layout {
+        flex-direction: column;
+        height: auto;
+    }
+    
+    .diff-panel {
+        border-right: none;
+        border-bottom: 1px solid #e0e0e0;
+    }
+    
+    .diff-panel:last-child {
+        border-bottom: none;
+    }
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 10px;
+    }
+    
+    .comparison-panels {
+        grid-template-columns: 1fr;
+    }
+    
+    .panel-header h2 {
+        font-size: 1rem;
+    }
+    
+    .panel-stats {
+        font-size: 0.8rem;
+        padding: 3px 8px;
+    }
+    
+    .code-editor textarea {
+        font-size: 12px;
+        padding: 15px;
+    }
+    
+    header h1 {
+        font-size: 2rem;
+    }
+}
+
+/* 스크롤바 스타일 */
+.diff-content::-webkit-scrollbar,
+.code-editor textarea::-webkit-scrollbar {
+    width: 8px;
+}
+
+.diff-content::-webkit-scrollbar-track,
+.code-editor textarea::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+.diff-content::-webkit-scrollbar-thumb,
+.code-editor textarea::-webkit-scrollbar-thumb {
+    background: #c1c1c1;
+    border-radius: 4px;
+}
+
+.diff-content::-webkit-scrollbar-thumb:hover,
+.code-editor textarea::-webkit-scrollbar-thumb:hover {
+    background: #a8a8a8;
+}
+
+/* 애니메이션 */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.source-panel {
+    animation: fadeIn 0.5s ease-out;
+}
+
+.diff-results {
+    animation: slideIn 0.3s ease-out;
+}
+
+/* 포커스 효과 */
+.code-editor textarea:focus {
+    animation: pulse 0.3s ease-in-out;
+}
+
+@keyframes pulse {
+    0% { box-shadow: inset 0 0 0 2px rgba(102, 126, 234, 0.3); }
+    50% { box-shadow: inset 0 0 0 4px rgba(102, 126, 234, 0.5); }
+    100% { box-shadow: inset 0 0 0 2px rgba(102, 126, 234, 0.3); }
+}
+
+/* 로딩 상태 */
+.loading {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    border: 2px solid #f3f3f3;
+    border-top: 2px solid #667eea;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-right: 8px;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* 하이라이트 효과 */
+.highlight-difference {
+    background: #fff3cd !important;
+    border-left: 3px solid #ffc107 !important;
+    animation: highlight 0.5s ease-in-out;
+}
+
+@keyframes highlight {
+    0% { background: #fff3cd; }
+    50% { background: #ffeaa7; }
+    100% { background: #fff3cd; }
+}
+
+/* 차이점 네비게이션 하이라이트 */
+.diff-highlighted {
+    background: #ffeb3b !important;
+    border-left: 4px solid #ff9800 !important;
+    box-shadow: 0 0 10px rgba(255, 193, 7, 0.5) !important;
+    animation: diffHighlight 0.3s ease-in-out;
+    transform: scale(1.02);
+    z-index: 10;
+    position: relative;
+}
+
+@keyframes diffHighlight {
+    0% { 
+        background: #ffeb3b;
+        transform: scale(1);
+    }
+    50% { 
+        background: #ffc107;
+        transform: scale(1.05);
+    }
+    100% { 
+        background: #ffeb3b;
+        transform: scale(1.02);
+    }
+}
+
+/* 네비게이션 안내 */
+.navigation-hint {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 10px 15px;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    z-index: 1000;
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+.navigation-hint .key {
+    background: #333;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-family: monospace;
+    margin: 0 2px;
+}

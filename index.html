@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>실시간 소스 비교 시스템</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>⚡ 실시간 소스 비교 시스템</h1>
+            <p>PRD 소스를 기준으로 개발기/QA/STG 소스와 실시간 비교</p>
+        </header>
+
+        <main class="comparison-layout">
+            <!-- 좌측: PRD 소스 -->
+            <div class="source-panel prd-panel">
+                <div class="panel-header">
+                    <h2>📋 PRD 소스</h2>
+                    <div class="panel-stats" id="prdStats">0줄</div>
+                </div>
+                <div class="code-editor">
+                    <textarea 
+                        id="prdSource" 
+                        placeholder="PRD 소스를 여기에 붙여넣으세요..."
+                        spellcheck="false"
+                    ></textarea>
+                </div>
+            </div>
+
+            <!-- 우측: 비교 대상들 -->
+            <div class="comparison-panels">
+                <!-- 개발기 소스 -->
+                <div class="source-panel dev-panel">
+                    <div class="panel-header">
+                        <div class="panel-title">
+                            <h2>🔧 개발기 소스</h2>
+                            <div class="panel-status" id="devStatus"></div>
+                        </div>
+                        <div class="panel-stats" id="devStats">0줄</div>
+                    </div>
+                    <div class="code-editor">
+                        <textarea 
+                            id="devSource" 
+                            placeholder="개발기 소스를 여기에 붙여넣으세요..."
+                            spellcheck="false"
+                        ></textarea>
+                    </div>
+                    <div class="diff-indicator" id="devDiffIndicator"></div>
+                </div>
+
+                <!-- QA 소스 -->
+                <div class="source-panel qa-panel">
+                    <div class="panel-header">
+                        <div class="panel-title">
+                            <h2>🧪 QA 소스</h2>
+                            <div class="panel-status" id="qaStatus"></div>
+                        </div>
+                        <div class="panel-stats" id="qaStats">0줄</div>
+                    </div>
+                    <div class="code-editor">
+                        <textarea 
+                            id="qaSource" 
+                            placeholder="QA 소스를 여기에 붙여넣으세요..."
+                            spellcheck="false"
+                        ></textarea>
+                    </div>
+                    <div class="diff-indicator" id="qaDiffIndicator"></div>
+                </div>
+
+                <!-- STG 소스 -->
+                <div class="source-panel stg-panel">
+                    <div class="panel-header">
+                        <div class="panel-title">
+                            <h2>🚀 STG 소스</h2>
+                            <div class="panel-status" id="stgStatus"></div>
+                        </div>
+                        <div class="panel-stats" id="stgStats">0줄</div>
+                    </div>
+                    <div class="code-editor">
+                        <textarea 
+                            id="stgSource" 
+                            placeholder="STG 소스를 여기에 붙여넣으세요..."
+                            spellcheck="false"
+                        ></textarea>
+                    </div>
+                    <div class="diff-indicator" id="stgDiffIndicator"></div>
+                </div>
+            </div>
+        </main>
+
+        <!-- 실시간 diff 결과 표시 -->
+        <div class="diff-results" id="diffResults" style="display: none;">
+            <div class="diff-header">
+                <h3>📊 실시간 비교 결과</h3>
+                <div class="diff-summary" id="diffSummary"></div>
+                <button id="toggleDiff" class="toggle-btn">숨기기</button>
+            </div>
+            <div class="diff-comparison-layout">
+                <div class="diff-panel left-panel">
+                    <div class="diff-panel-header">
+                        <h4>📋 PRD 소스</h4>
+                        <div class="diff-panel-stats" id="prdDiffStats">0줄</div>
+                    </div>
+                    <div class="diff-panel-content" id="prdDiffContent"></div>
+                </div>
+                <div class="diff-panel right-panel">
+                    <div class="diff-panel-header">
+                        <h4 id="compareSourceTitle">🔧 개발기 소스</h4>
+                        <div class="diff-panel-stats" id="compareDiffStats">0줄</div>
+                    </div>
+                    <div class="diff-panel-content" id="compareDiffContent"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 전체 비교 결과 표시 -->
+        <div class="overall-comparison-result" id="overallComparisonResult" style="display: none;">
+            <div class="overall-result-content" id="overallResultContent"></div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
